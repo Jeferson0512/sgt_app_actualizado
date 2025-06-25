@@ -5,15 +5,14 @@
     class maestrosModelo extends mainModelo
     {
     
-        protected static function fnListarAreaMaestra(){
+        protected static function fnListarArea(){
             $sql = mainModelo::fnConectar()->query('SELECT * FROM area  ORDER BY nombre ASC');
             // return $sql->fetchAll(PDO::FETCH_ASSOC);
             return $sql->fetchAll();
         }
 
-
         // // Agregar modelo de maestros
-        // protected static function fnAgregarAreaMaestraSinStore($datos)
+        // protected static function fnRegistrarAreaMaestraSinStore($datos)
         // {
         //     $sql = mainModelo::fnConectar()->prepare(
         //         'INSERT INTO area(codigo, nombre, abreviatura, estado, fregistro, usercreate)
@@ -69,7 +68,12 @@
             }
         }
 
-        protected static function fnAgregarCargoMaestra($datos)
+        protected static function fnListarCargo(){
+            $sql = mainModelo::fnConectar()->query('SELECT * FROM cargo ORDER BY nombre ASC');
+            // return $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $sql->fetchAll();
+        }
+        protected static function fnRegistrarCargo($datos)
         {
             $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarCargoMaestra(:Nombre, :Descripcion, :Estado, :Usuario)');
             // $sql->bindParam(":Codigo", $datos['Codigo']);
@@ -88,8 +92,22 @@
 
             return $sql;
         }
+        protected static function fnEliminarCargo($id){
+            $sql = mainModelo::fnConectar()->prepare('DELETE FROM cargo where codigo = :ID');
+            $sql->bindParam(":ID", $id);
+            if($sql->execute()){
+                return [1, 'Cargo eliminado correctamente'];
+            } else {
+                return [0, 'Error al preparar la consulta '.$sql->errorInfo()];
+            }
+        }
 
-        protected static function fnAgregarPersonalMaestra($datos)
+        protected static function fnListarPersonal(){
+            $sql = mainModelo::fnConectar()->query('SELECT * FROM personal ORDER BY nombre ASC');
+            // return $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $sql->fetchAll();
+        }
+        protected static function fnRegistrarPersonal($datos)
         {
             $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarPersonalMaestra(:Nombres, :ApellidoPa, :ApellidoMa, :Correo, :FechaNacimiento, :DNI, :Celular, :Area, :Cargo, :Estado, :Usuario)');
             $sql->bindParam(":Nombres", $datos['Nombres']);
@@ -111,8 +129,22 @@
 
             return $sql;
         }
+        protected static function fnEliminarPersonal($id){
+            $sql = mainModelo::fnConectar()->prepare('DELETE FROM personal where codigo = :ID');
+            $sql->bindParam(":ID", $id);
+            if($sql->execute()){
+                return [1, 'Personal eliminado correctamente'];
+            } else {
+                return [0, 'Error al preparar la consulta '.$sql->errorInfo()];
+            }
+        }
 
-        protected static function fnAgregarSentidoMaestra($datos)
+        protected static function fnListarSentido(){
+            $sql = mainModelo::fnConectar()->query('SELECT * FROM sentido ORDER BY nombre ASC');
+            // return $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $sql->fetchAll();
+        }
+        protected static function fnRegistrarSentido($datos)
         {
             $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarSentidoMaestra(:Nombre, :Estado, :Usuario)');
             $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -127,8 +159,22 @@
 
             return $sql;
         }
+        protected static function fnEliminarSentido($id){
+            $sql = mainModelo::fnConectar()->prepare('DELETE FROM sentido where codigo = :ID');
+            $sql->bindParam(":ID", $id);
+            if($sql->execute()){
+                return [1, 'Sentido eliminado correctamente'];
+            } else {
+                return [0, 'Error al preparar la consulta '.$sql->errorInfo()];
+            }
+        }
 
-        protected static function fnAgregarSistemaMaestra($datos)
+        protected static function fnListarSistema(){
+            $sql = mainModelo::fnConectar()->query('SELECT * FROM sistemas ORDER BY nombre ASC');
+            // return $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $sql->fetchAll();
+        }
+        protected static function fnRegistrarSistema($datos)
         {
             $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarSistemaMaestra(:Nombre, :Estado, :Usuario)');
             $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -142,8 +188,22 @@
 
             return $sql;
         }
+        protected static function fnEliminarSistema($id){
+            $sql = mainModelo::fnConectar()->prepare('DELETE FROM sistemas where codigo = :ID');
+            $sql->bindParam(":ID", $id);
+            if($sql->execute()){
+                return [1, 'Sistema eliminado correctamente'];
+            } else {
+                return [0, 'Error al preparar la consulta '.$sql->errorInfo()];
+            }
+        }
 
-        protected static function fnAgregarTipoVehiculoMaestra($datos)
+        protected static function fnListarTipoVehiculo(){
+            $sql = mainModelo::fnConectar()->query('SELECT * FROM tipo_vehiculo ORDER BY nombre ASC');
+            // return $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $sql->fetchAll();
+        }
+        protected static function fnRegistrarTipoVehiculo($datos)
         {
             $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarTipoVehiculoMaestra(:Nombre, :Estado, :Usuario)');
             $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -157,8 +217,22 @@
 
             return $sql;
         }
+        protected static function fnEliminarTipoVehiculo($id){
+            $sql = mainModelo::fnConectar()->prepare('DELETE FROM tipo_vehiculo where codigo = :ID');
+            $sql->bindParam(":ID", $id);
+            if($sql->execute()){
+                return [1, 'Tipo de Vehiculo eliminado correctamente'];
+            } else {
+                return [0, 'Error al preparar la consulta '.$sql->errorInfo()];
+            }
+        }
 
-        protected static function fnAgregarTurnoMaestra($datos)
+        protected static function fnListarTurno(){
+            $sql = mainModelo::fnConectar()->query('SELECT * FROM turno ORDER BY nombre ASC');
+            // return $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $sql->fetchAll();
+        }
+        protected static function fnRegistrarTurno($datos)
         {
             $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarTurnoMaestra(:Nombre, :Estado, :Usuario)');
             $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -172,8 +246,22 @@
 
             return $sql;
         }
+        protected static function fnEliminarTurno($id){
+            $sql = mainModelo::fnConectar()->prepare('DELETE FROM turno where codigo = :ID');
+            $sql->bindParam(":ID", $id);
+            if($sql->execute()){
+                return [1, 'Turno eliminado correctamente'];
+            } else {
+                return [0, 'Error al preparar la consulta '.$sql->errorInfo()];
+            }
+        }
 
-        protected static function fnAgregarUbicacionMaestra($datos)
+        protected static function fnListarUbicacion(){
+            $sql = mainModelo::fnConectar()->query('SELECT * FROM ubicacion ORDER BY nombre ASC');
+            // return $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $sql->fetchAll();
+        }
+        protected static function fnRegistrarUbicacion($datos)
         {
             $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarUbicacionMaestra(:Nombre, :Estado, :Usuario)');
             $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -187,8 +275,22 @@
 
             return $sql;
         }
-
-        protected static function fnAgregarZonaMaestra($datos)
+        protected static function fnEliminarUbicacion($id){
+            $sql = mainModelo::fnConectar()->prepare('DELETE FROM ubicacion where codigo = :ID');
+            $sql->bindParam(":ID", $id);
+            if($sql->execute()){
+                return [1, 'Ubicación eliminada correctamente'];
+            } else {
+                return [0, 'Error al preparar la consulta '.$sql->errorInfo()];
+            }
+        }
+        
+        protected static function fnListarZona(){
+            $sql = mainModelo::fnConectar()->query('SELECT z.codigo, z.nombre, z.estado, s.nombre tunel FROM zona as z INNER JOIN sentido as s ON s.codigo = z.sentido_codigo  ORDER BY nombres ASC');
+            // return $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $sql->fetchAll();
+        }
+        protected static function fnRegistrarZona($datos)
         {
             $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarZonaMaestra(:Nombre, :Sentido, :Estado, :Usuario)');
             $sql->bindParam(":Nombre", $datos['Nombre']);
@@ -202,6 +304,15 @@
             }
 
             return $sql;
+        }
+        protected static function fnEliminarZona($id){
+            $sql = mainModelo::fnConectar()->prepare('DELETE FROM zona where codigo = :ID');
+            $sql->bindParam(":ID", $id);
+            if($sql->execute()){
+                return [1, 'Zona eliminada correctamente'];
+            } else {
+                return [0, 'Error al preparar la consulta '.$sql->errorInfo()];
+            }
         }
     }
     

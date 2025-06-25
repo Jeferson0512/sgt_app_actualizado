@@ -9,14 +9,14 @@ class maestrosControlador extends maestrosModelo
 {
 
 	// agregar modelo maestros
-	// public function fnAgregarMaestrosControlador() {}
+	// public function fnRegistrarMaestrosControlador() {}
 
 
 	//Listar Tabla Areas Maestras
-	public function fnListarMaestroAreas()
+	public function fnListarAreasControlador()
 	{
 		$tabla = "";
-		$datos = maestrosModelo::fnListarAreaMaestra();
+		$datos = maestrosModelo::fnListarArea();
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -41,17 +41,17 @@ class maestrosControlador extends maestrosModelo
 						<td>' . $rows['abreviatura'] . '</td>
 						<td>' . ($rows['estado'] == 1 ? 'Operativo' : 'Inoperativo') . '</td>								
 						<td>
-						<div class="row" style="margin: 0px">
-								<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-							
-								<form onsubmit="return eliminarArea()" id="formEliminarArea" action="'.serverUrl.'ajax/maestroAjax.php" method="POST" data-form="eliminar_area" autocomplete="off">
-									<input type="hidden" name="maestro_area_eliminar_id" value="'.$rows['codigo'].'">
-									<input type="hidden" name="accion" value="eliminar_area">
-									<input type="hidden" name="tipoMaestro" value="area">
-									<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-								</form>
-							
-						</div>
+							<div class="row" style="margin: 0px">
+									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
+								
+									<form onsubmit="return eliminarArea()" id="formEliminarArea" action="'.serverUrl.'ajax/maestroAjax.php" method="POST" data-form="eliminar_area" autocomplete="off">
+										<input type="hidden" name="maestro_area_eliminar_id" value="'.$rows['codigo'].'">
+										<input type="hidden" name="accion" value="eliminar_area">
+										<input type="hidden" name="tipoMaestro" value="area">
+										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
+									</form>
+								
+							</div>
 						</td>
 					</tr>';
 			$contador++;
@@ -64,14 +64,10 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	//Listar Tabla Tabla Cargos Maestras
-	public function fnListarMaestroCargos()
+	public function fnListarCargosControlador()
 	{
 		$tabla = "";
-		$consulta = "SELECT * FROM cargo ORDER BY nombre ASC";
-		$conexion = mainModelo::fnConectar();
-
-		$datos = $conexion->query($consulta);
-		$datos = $datos->fetchAll();
+		$datos = maestrosModelo::fnListarCargo();
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -96,8 +92,16 @@ class maestrosControlador extends maestrosModelo
 						<td>' . $rows['descripcion'] . '</td>
 						<td>' . ($rows['estado'] == 1 ? 'Operativo' : 'Inoperativo') . '</td>
 						<td>
-							<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-							<a href="" class="btn btn-warning"><i class="far fa-trash-alt"></i></a>
+							<div class="row" style="margin: 0px">
+								<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
+								
+								<form onsubmit="return eliminarCargo()" id="formEliminarCargo" action="'.serverUrl.'ajax/maestroAjax.php" method="POST" data-form="eliminar_cargo" autocomplete="off">
+									<input type="hidden" name="maestro_cargo_eliminar_id" value="'.$rows['codigo'].'">
+									<input type="hidden" name="accion" value="eliminar_cargo">
+									<input type="hidden" name="tipoMaestro" value="cargo">
+									<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
+								</form>
+							</div>
 						</td>
 					</tr>';
 			$contador++;
@@ -109,14 +113,10 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	//Listar Tabla Personal Maestras
-	public function fnListarMaestroPersonal()
+	public function fnListarPersonalControlador()
 	{
 		$tabla = "";
-		$consulta = "SELECT * FROM personal  ORDER BY nombres ASC";
-		$conexion = mainModelo::fnConectar();
-
-		$datos = $conexion->query($consulta);
-		$datos = $datos->fetchAll();
+		$datos = maestrosModelo::fnListarPersonal();
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -158,14 +158,10 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	//Listar Tabla Sentido Maestras
-	public function fnListarMaestroSentido()
+	public function fnListarSentidoControlador()
 	{
 		$tabla = "";
-		$consulta = "SELECT * FROM sentido  ORDER BY nombre ASC";
-		$conexion = mainModelo::fnConectar();
-
-		$datos = $conexion->query($consulta);
-		$datos = $datos->fetchAll();
+		$datos = maestrosModelo::fnListarSentido();
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -201,14 +197,10 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	//Listar Tabla Sistema Maestras
-	public function fnListarMaestroSistema()
+	public function fnListarSistemaControlador()
 	{
 		$tabla = "";
-		$consulta = "SELECT * FROM sistemas  ORDER BY nombre ASC";
-		$conexion = mainModelo::fnConectar();
-
-		$datos = $conexion->query($consulta);
-		$datos = $datos->fetchAll();
+		$datos = maestrosModelo::fnListarSistema();
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -244,14 +236,10 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	//Listar Tabla Tipo Vehiculo Maestras
-	public function fnListarMaestroTipoVehiculo()
+	public function fnListarTipoVehiculoControlador()
 	{
 		$tabla = "";
-		$consulta = "SELECT * FROM tipo_vehiculo ORDER BY nombre ASC";
-		$conexion = mainModelo::fnConectar();
-
-		$datos = $conexion->query($consulta);
-		$datos = $datos->fetchAll();
+		$datos = maestrosModelo::fnListarTipoVehiculo();
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -287,14 +275,10 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	//Listar Tabla Turno Maestras
-	public function fnListarMaestroTurno()
+	public function fnListarTurnoControlador()
 	{
 		$tabla = "";
-		$consulta = "SELECT * FROM turno  ORDER BY nombre ASC";
-		$conexion = mainModelo::fnConectar();
-
-		$datos = $conexion->query($consulta);
-		$datos = $datos->fetchAll();
+		$datos = maestrosModelo::fnListarTurno();
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -330,14 +314,10 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	//Listar Tabla Ubicacion Maestras
-	public function fnListarMaestroUbicacion()
+	public function fnListarUbicacionControlador()
 	{
 		$tabla = "";
-		$consulta = "SELECT * FROM ubicacion  ORDER BY nombre ASC";
-		$conexion = mainModelo::fnConectar();
-
-		$datos = $conexion->query($consulta);
-		$datos = $datos->fetchAll();
+		$datos = maestrosModelo::fnListarUbicacion();
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -373,14 +353,10 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	//Listar Tabla Usuario Maestras
-	public function fnListarMaestroUsuario()
+	public function fnListarUsuarioControlador()
 	{
 		$tabla = "";
-		$consulta = "SELECT * FROM usuarios ORDER BY estado DESC, nombres ASC";
-		$conexion = mainModelo::fnConectar();
-
-		$datos = $conexion->query($consulta);
-		$datos = $datos->fetchAll();
+		$datos = maestrosModelo::fnListarUbicacion();//CAMBIAR A LISTA USUARIO
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -418,14 +394,10 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	//Listar Tabla Zona Maestras
-	public function fnListarMaestroZona()
+	public function fnListarZonaControlador()
 	{
 		$tabla = "";
-		$consulta = "SELECT z.codigo, z.nombre, z.estado, s.nombre tunel FROM zona as z INNER JOIN sentido as s ON s.codigo = z.sentido_codigo  ORDER BY nombres ASC";
-		$conexion = mainModelo::fnConectar();
-
-		$datos = $conexion->query($consulta);
-		$datos = $datos->fetchAll();
+		$datos = maestrosModelo::fnListarZona();
 
 		$tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -550,7 +522,7 @@ class maestrosControlador extends maestrosModelo
 	} /* Fin controlador */
 
 	// Modelo para agregar Area Maestra
-	public function fnAgregarAreaMaestraControlador()
+	public function fnRegistrarAreaControlador()
 	{
 		// echo "console.log('entro a CONTROLADOR')";
 		$nombre = $_POST['maestro_area_nombre'];
@@ -615,7 +587,7 @@ class maestrosControlador extends maestrosModelo
 		echo json_encode($alerta);
 	}
 	// Modelo para agregar Cargo Maestra
-	public function fnAgregarCargoMaestraControlador()
+	public function fnRegistrarCargoControlador()
 	{
 		$nombre = $_POST['m_cargo_nombre'];
 		$descripcion = $_POST['m_cargo_descripcion'];
@@ -629,12 +601,32 @@ class maestrosControlador extends maestrosModelo
 			"Usuario" => "rvizarreta"
 		];
 
-		$agregarCargo = maestrosModelo::fnAgregarCargoMaestra($datos);
-		$this->fnListarMaestroCargos();
-		// echo json_encode($alerta);
+		$agregarCargo = maestrosModelo::fnRegistrarCargo($datos);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Cargo registrado",
+			"Texto" => "$agregarCargo[1]",
+			"Tipo" => "success",
+			"modal" => "agregarCargoMaestra"
+		];
+		echo json_encode($alerta);
+	}
+	public function fnEliminarCargoControlador($id){
+		$id = $_POST['maestro_cargo_eliminar_id'];
+		$eliminarCargo = maestrosModelo::fnEliminarCargo($id);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Cargo eliminada",
+			"Texto" => "$eliminarCargo[1]",
+			"Tipo" => "success",
+			"modal" => "agregarCargoMaestra"
+		];
+		echo json_encode($alerta);
 	}
 	// Modelo para agregar Personal Maestra
-	public function fnAgregarPersonalMaestraControlador()
+	public function fnRegistrarPersonalControlador()
 	{
 		$area = $_POST['m_personal_area'];
 		$cargo = $_POST['m_personal_cargo'];
@@ -661,12 +653,32 @@ class maestrosControlador extends maestrosModelo
 			"Usuario" => "rvizarreta"
 		];
 
-		$agregarPersonal = maestrosModelo::fnAgregarPersonalMaestra($datos);
-		$this->fnListarMaestroPersonal();
-		echo `<script>alert("¡'.$agregarPersonal[1].'"!);</script>`;
+		$agregarPersonal = maestrosModelo::fnRegistrarPersonal($datos);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Personal registrado",
+			"Texto" => "$agregarPersonal[1]",
+			"Tipo" => "success",
+			"modal" => "agregarPersonalMaestra"
+		];
+		echo json_encode($alerta);
+	}
+	public function fnEliminarPersonalControlador($id){
+		$id = $_POST['maestro_personal_eliminar_id'];
+		$personal = maestrosModelo::fnEliminarPersonal($id);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Personal eliminado",
+			"Texto" => "$personal[1]",
+			"Tipo" => "success",
+			"modal" => "agregarPersonalMaestra"
+		];
+		echo json_encode($alerta);
 	}
 	// Modelo para agregar Sentido Maestra
-	public function fnAgregarSentidoMaestraControlador()
+	public function fnRegistrarSentidoControlador()
 	{
 		$nombre = $_POST['m_sentido_nombre'];
 
@@ -677,12 +689,32 @@ class maestrosControlador extends maestrosModelo
 			"Usuario" => "rvizarreta"
 		];
 
-		$agregarSentido = maestrosModelo::fnAgregarSentidoMaestra($datos);
-		$this->fnListarMaestroSentido();
-		echo `<script>alert("¡'.$agregarSentido[1].'"!);</script>`;
+		$agregarSentido = maestrosModelo::fnRegistrarSentido($datos);
+		
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Sentido registrado",
+			"Texto" => "$agregarSentido[1]",
+			"Tipo" => "success",
+			"modal" => "agregarSentidoMaestra"
+		];
+		echo json_encode($alerta);
+	}
+	public function fnEliminarSentidoControlador($id){
+		$id = $_POST['maestro_sentido_eliminar_id'];
+		$sentido = maestrosModelo::fnEliminarSentido($id);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Sentido eliminado",
+			"Texto" => "$sentido[1]",
+			"Tipo" => "success",
+			"modal" => "agregarSentidoMaestra"
+		];
+		echo json_encode($alerta);
 	}
 	// Modelo para agregar Sistema Maestra
-	public function fnAgregarSistemaMaestraControlador()
+	public function fnRegistrarSistemaControlador()
 	{
 		$nombre = $_POST['m_sistema_nombre'];
 
@@ -693,12 +725,32 @@ class maestrosControlador extends maestrosModelo
 			"Usuario" => "rvizarreta"
 		];
 
-		$agregarSistema = maestrosModelo::fnAgregarSistemaMaestra($datos);
-		$this->fnListarMaestroSistema();
-		echo `<script>alert("¡'.$agregarSistema[1].'"!);</script>`;
+		$agregarSistema = maestrosModelo::fnRegistrarSistema($datos);
+		
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Sistema registrado",
+			"Texto" => "$agregarSistema[1]",
+			"Tipo" => "success",
+			"modal" => "agregarSistemaMaestra"
+		];
+		echo json_encode($alerta);
+	}
+	public function fnEliminarSistemaControlador($id){
+		$id = $_POST['maestro_sistema_eliminar_id'];
+		$sistema = maestrosModelo::fnEliminarSistema($id);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Sistema eliminado",
+			"Texto" => "$sistema[1]",
+			"Tipo" => "success",
+			"modal" => "agregarSistemaMaestra"
+		];
+		echo json_encode($alerta);
 	}
 	// Modelo para agregar Tipo de Vehiculo Maestra
-	public function fnAgregarTipoVehiculoMaestraControlador()
+	public function fnRegistrarTipoVehiculoControlador()
 	{
 		$nombre = $_POST['m_tipovehiculo_nombre'];
 
@@ -709,12 +761,32 @@ class maestrosControlador extends maestrosModelo
 			"Usuario" => "rvizarreta"
 		];
 
-		$agregarTipoVehiculo = maestrosModelo::fnAgregarTipoVehiculoMaestra($datos);
-		$this->fnListarMaestroTipoVehiculo();
-		echo `<script>alert("¡'.$agregarTipoVehiculo[1].'"!);</script>`;
+		$agregarTipoVehiculo = maestrosModelo::fnRegistrarTipoVehiculo($datos);
+		
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Tipo de Vehiculo registrado",
+			"Texto" => "$agregarTipoVehiculo[1]",
+			"Tipo" => "success",
+			"modal" => "agregarTipoVehiculoMaestra"
+		];
+		echo json_encode($alerta);
+	}
+	public function fnEliminarTipoVehiculoControlador($id){
+		$id = $_POST['maestro_sentido_eliminar_id'];
+		$tipoVehiculo = maestrosModelo::fnEliminarTipoVehiculo($id);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Tipo de Vehiculo eliminado",
+			"Texto" => "$tipoVehiculo[1]",
+			"Tipo" => "success",
+			"modal" => "agregarTipoVehiculoMaestra"
+		];
+		echo json_encode($alerta);
 	}
 	// Modelo para agregar Turno Maestra
-	public function fnAgregarTurnoMaestraControlador()
+	public function fnRegistrarTurnoControlador()
 	{
 		$nombre = $_POST['m_turno_nombre'];
 
@@ -725,12 +797,32 @@ class maestrosControlador extends maestrosModelo
 			"Usuario" => "rvizarreta"
 		];
 
-		$agregarTurno = maestrosModelo::fnAgregarTurnoMaestra($datos);
-		$this->fnListarMaestroTurno();
-		echo `<script>alert("¡'.$agregarTurno[1].'"!);</script>`;
+		$agregarTurno = maestrosModelo::fnRegistrarTurno($datos);
+		
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Turno registrado",
+			"Texto" => "$agregarTurno[1]",
+			"Tipo" => "success",
+			"modal" => "agregarTurnoMaestra"
+		];
+		echo json_encode($alerta);
+	}
+	public function fnEliminarTurnoControlador($id){
+		$id = $_POST['maestro_turno_eliminar_id'];
+		$turno = maestrosModelo::fnEliminarTurno($id);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Turno eliminado",
+			"Texto" => "$turno[1]",
+			"Tipo" => "success",
+			"modal" => "agregarTurnoMaestra"
+		];
+		echo json_encode($alerta);
 	}
 	// Modelo para agregar Ubicacion Maestra
-	public function fnAgregarUbicacionMaestraControlador()
+	public function fnRegistrarUbicacionControlador()
 	{
 		$nombre = $_POST['m_ubicacion_nombre'];
 
@@ -741,14 +833,47 @@ class maestrosControlador extends maestrosModelo
 			"Usuario" => "rvizarreta"
 		];
 
-		$agregarUbicacion = maestrosModelo::fnAgregarUbicacionMaestra($datos);
-		$this->fnListarMaestroUbicacion();
-		echo `<script>alert("¡'.$agregarUbicacion[1].'"!);</script>`;
+		$agregarUbicacion = maestrosModelo::fnRegistrarUbicacion($datos);
+		
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Ubicación registrada",
+			"Texto" => "$agregarUbicacion[1]",
+			"Tipo" => "success",
+			"modal" => "agregarUbicacionMaestra"
+		];
+		echo json_encode($alerta);
+	}
+	public function fnEliminarUbicaciconControlador($id){
+		$id = $_POST['maestro_ubicacion_eliminar_id'];
+		$ubicacion = maestrosModelo::fnEliminarUbicacion($id);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Ubicación eliminada",
+			"Texto" => "$ubicacion[1]",
+			"Tipo" => "success",
+			"modal" => "agregarUbicacionMaestra"
+		];
+		echo json_encode($alerta);
 	}
 	// Modelo para agregar Usuario Maestra
-	public function fnAgregarUsuarioMaestraControlador() {}
+	public function fnRegistrarUsuarioControlador() {}
+	public function fnEliminarUsuarioControlador($id){
+		$id = $_POST['maestro_usuario_eliminar_id'];
+		// $sentido = maestrosModelo::fnEliminarUsuario($id);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Usuario eliminado",
+			// "Texto" => "$sentido[1]",
+			"Tipo" => "success",
+			"modal" => "agregarUsuarioMaestra"
+		];
+		echo json_encode($alerta);
+	}
 	// Modelo para agregar Zona Maestra
-	public function fnAgregarZonaMaestraControlador()
+	public function fnRegistrarZonaControlador()
 	{
 		$nombre = $_POST['m_zona_nombre'];
 		$sentido = $_POST['m_zona_sentido'];
@@ -761,38 +886,58 @@ class maestrosControlador extends maestrosModelo
 			"Usuario" => "rvizarreta"
 		];
 
-		$agregarZona = maestrosModelo::fnAgregarZonaMaestra($datos);
-		$this->fnListarMaestroZona();
-		echo `<script>alert("¡'.$agregarZona[1].'"!);</script>`;
+		$agregarZona = maestrosModelo::fnRegistrarZona($datos);
+		
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Zona registrada",
+			"Texto" => "$agregarZona[1]",
+			"Tipo" => "success",
+			"modal" => "agregarZonaMaestra"
+		];
+		echo json_encode($alerta);
+	}
+	public function fnEliminarZonaControlador($id){
+		$id = $_POST['maestro_zona_eliminar_id'];
+		$zona = maestrosModelo::fnEliminarZona($id);
+
+		$alerta = [
+			"Alerta" => "limpiar",
+			"Titulo" => "Zona eliminada",
+			"Texto" => "$zona[1]",
+			"Tipo" => "success",
+			"modal" => "agregarZonaMaestra"
+		];
+		echo json_encode($alerta);
 	}
 
-	public function fnProcesarAjaxAreas()
-	{
-		if ($_POST['accion'] == 'listar_areas') {
-			print_r("LISTA");
-			echo $this->fnListarMaestroAreas();
-			exit();
-		}
+	// public function fnProcesarAjaxAreas()
+	// {
+	// 	if ($_POST['accion'] == 'listar_areas') {
+	// 		print_r("LISTA");
+	// 		echo $this->fnListarMaestroAreas();
+	// 		exit();
+	// 	}
 
-		if ($_POST['accion'] == 'registrar_area') {
-			$nombre = trim($_POST['maestro_area_nombre'] ?? '');
-			if ($nombre == '') {
-				echo "El nombre del área es obligatorio.";
-				exit();
-			}
-			// $nombre = $_POST['maestro_area_nombre'];
-			$abreviatura = $_POST['maestro_area_abreviatura'];
-			print_r("ENTRO");
-			// Aquí deberías tener un modelo que inserte en la base de datos.
-			require_once "./modelos/maestrosModelo.php";
-			$datos_area = new stdClass();
-			$datos_area->nombre = $nombre;
-			$datos_area->abreviatura = $abreviatura;
+	// 	if ($_POST['accion'] == 'registrar_area') {
+	// 		$nombre = trim($_POST['maestro_area_nombre'] ?? '');
+	// 		if ($nombre == '') {
+	// 			echo "El nombre del área es obligatorio.";
+	// 			exit();
+	// 		}
+	// 		// $nombre = $_POST['maestro_area_nombre'];
+	// 		$abreviatura = $_POST['maestro_area_abreviatura'];
+	// 		print_r("ENTRO");
+	// 		// Aquí deberías tener un modelo que inserte en la base de datos.
+	// 		require_once "./modelos/maestrosModelo.php";
+	// 		$datos_area = new stdClass();
+	// 		$datos_area->nombre = $nombre;
+	// 		$datos_area->abreviatura = $abreviatura;
 
-			// $resultado = maestrosModelo::fnAgregarAreaMaestra($datos_area);
+	// 		// $resultado = maestrosModelo::fnRegistrarArea($datos_area);
 
-			echo $resultado ? "Área registrada correctamente." : "Error al registrar.";
-			exit();
-		}
-	}
+	// 		echo $resultado ? "Área registrada correctamente." : "Error al registrar.";
+	// 		exit();
+	// 	}
+	// }
 }
