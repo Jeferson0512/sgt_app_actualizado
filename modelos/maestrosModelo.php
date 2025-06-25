@@ -103,7 +103,7 @@
         }
 
         protected static function fnListarPersonal(){
-            $sql = mainModelo::fnConectar()->query('SELECT * FROM personal ORDER BY nombre ASC');
+            $sql = mainModelo::fnConectar()->query('SELECT * FROM personal ORDER BY nombres ASC');
             // return $sql->fetchAll(PDO::FETCH_ASSOC);
             return $sql->fetchAll();
         }
