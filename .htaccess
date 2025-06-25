@@ -1,0 +1,13 @@
+RewriteEngine On
+Options All -Indexes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^([a-zA-Z0-9/ñÑ-]+)$ index.php?views=$1
+# Regla general para todo lo demás (como /home o /maestros/usuarios)
+RewriteRule ^([a-zA-Z0-9ñÑ/-]+)$ index.php?views=$1 [QSA,L]
+
+# Regla para /maestros/usuarios/1 o similares con ID numérico
+RewriteRule ^([a-zA-Z0-9ñÑ/-]+)/([0-9]+)$ index.php?views=$1&id=$2 [QSA,L]
+
+# Regla para /blog/articulo/como-usar-zapatos (o cualquier slug después del tercer segmento)
+RewriteRule ^([a-zA-Z0-9ñÑ/-]+)/([a-zA-Z0-9ñÑ-]+)$ index.php?views=$1&slug=$2 [QSA,L]
