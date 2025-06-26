@@ -85,7 +85,7 @@ if ($_POST['tipoMaestro'] == 'personal') {
 
         case 'eliminar_personal':
             $id = $_POST['maestro_personal_eliminar_id'];
-            // $resultado = $ins->fnEliminarPersonalControlador($id);
+            $resultado = $ins->fnEliminarPersonalControlador($id);
             break;
 
         case 'editar_personal':
@@ -180,8 +180,7 @@ if ($_POST['tipoMaestro'] == 'tipoVehiculo') {
             break;
 
         case 'eliminar_tipoVehiculo':
-            $id = $_POST['maestro_tipoVehiculo_eliminar_id'];
-            $resultado = $ins->fnEliminarTipoVehiculoControlador($id);
+            echo $ins->fnEliminarTipoVehiculoControlador();
             break;
 
         case 'editar_tipoVehiculo':

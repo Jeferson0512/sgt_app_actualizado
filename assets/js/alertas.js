@@ -67,7 +67,6 @@ const formulariosAjax = document.querySelectorAll(".FormularioAjax");
 formulariosAjax.forEach((formularios) => {
   formularios.addEventListener("submit", fnEnviarFormularioAjax);
 });
-
 function tipoAlerta(tipo) {
   let textoAlerta = "";
   if (tipo === "save") {
@@ -86,6 +85,20 @@ function tipoAlerta(tipo) {
     textoAlerta = "Quieres realizar la operación solicitada";
   }
   return textoAlerta;
+}
+function confirmAlerta(tipo) {
+  let textoAlerta = tipoAlerta(tipo);
+  let confirm = Swal.fire({
+    title: "Estas seguro",
+    text: textoAlerta,
+    type: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonText: "#d33",
+    confirmButtonText: "Aceptar",
+    cancelButtonText: "Cancelar",
+  });
+  return confirm;
 }
 
 function alertasAjax(alerta) {

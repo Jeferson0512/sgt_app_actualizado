@@ -286,7 +286,8 @@
         }
         
         protected static function fnListarZona(){
-            $sql = mainModelo::fnConectar()->query('SELECT z.codigo, z.nombre, z.estado, s.nombre tunel FROM zona as z INNER JOIN sentido as s ON s.codigo = z.sentido_codigo  ORDER BY nombres ASC');
+            $sql = mainModelo::fnConectar()->query('SELECT z.codigo as codigo, z.nombre as nombre, z.estado as estado, s.nombre tunel 
+            FROM zona as z INNER JOIN sentido as s ON s.codigo = z.sentido_codigo  ORDER BY tunel, nombre ASC');
             // return $sql->fetchAll(PDO::FETCH_ASSOC);
             return $sql->fetchAll();
         }

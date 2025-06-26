@@ -292,13 +292,7 @@ class maestrosControlador extends maestrosModelo
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
 								
-									<form onsubmit="return eliminarTipoVehiculo()" id="formEliminarTipoVehiculo" action="'.serverUrl.'ajax/maestroAjax.php" 
-										method="POST" data-form="eliminar_tipoVehiculo" autocomplete="off">
-										<input type="hidden" name="maestro_tipoVehiculo_eliminar_id" value="'.$rows['codigo'].'">
-										<input type="hidden" name="accion" value="eliminar_tipoVehiculo">
-										<input type="hidden" name="tipoMaestro" value="tipoVehiculo">
-										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-									</form>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"><i class="far fa-trash-alt"></i></button>
 							</div>
 						</td>
 					</tr>';
@@ -844,8 +838,8 @@ class maestrosControlador extends maestrosModelo
 		];
 		echo json_encode($alerta);
 	}
-	public function fnEliminarTipoVehiculoControlador($id){
-		$id = $_POST['maestro_sentido_eliminar_id'];
+	public function fnEliminarTipoVehiculoControlador(){
+		$id = $_POST['maestro_tipoVehiculo_eliminar_id'];
 		$tipoVehiculo = maestrosModelo::fnEliminarTipoVehiculo($id);
 
 		$alerta = [
@@ -853,7 +847,7 @@ class maestrosControlador extends maestrosModelo
 			"Titulo" => "Tipo de Vehiculo eliminado",
 			"Texto" => "$tipoVehiculo[1]",
 			"Tipo" => "success",
-			"modal" => "agregarTipoVehiculoMaestra"
+			// "modal" => "agregarTipoVehiculoMaestra"
 		];
 		echo json_encode($alerta);
 	}
