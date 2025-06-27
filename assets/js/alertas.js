@@ -1,4 +1,5 @@
 const formulariosAjax = document.querySelectorAll(".FormularioAjax");
+const btnEliminarMaestroAjax = document.querySelectorAll(".btnEliminarMaestro");
 // function fnEnviarFormularioAjax(e) {
 //   e.preventDefault();
 
@@ -63,7 +64,66 @@ const formulariosAjax = document.querySelectorAll(".FormularioAjax");
 //     }
 //   });
 // }
+function fnTableListaMaestro(accion, maestro){
+		fetch('../../ajax/maestroAjax.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'accion='+accion+'&maestro='+maestro
+			})
+			.then(res => res.text())
+			.then(html => {
+				document.getElementById('tabla-'+maestro).innerHTML = html;
+				fnBtnEliminarMaestroAjax();
+			});
+}
+function fnBtnEliminarMaestroAjax(){
+  
+    document.querySelectorAll('.btnEliminar').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        // const id = btn.dataset.id;
+        const {id, maestro, accion} = btn.dataset
+        let textoAlerta = tipoAlerta('delete');
+        console.log(btn.dataset)
+        const confirm = await Swal.fire({
+          title: "Estas seguro",
+          text: textoAlerta,
+          type: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonText: "#d33",
+          confirmButtonText: "Aceptar",
+          cancelButtonText: "Cancelar",
+        });
+        
+        if (confirm.value) {
+        
+          // const formData = new URLSearchParams();
+          // formData.append('maestro', 'tipoVehiculo');
+          // formData.append('accion', 'eliminar_tipoVehiculo');
+          // formData.append('maestro_tipoVehiculo_eliminar_id', id);
+          const formData = new URLSearchParams({id, maestro, accion});
+          // console.log("ENTOR A ALERTAS.JS", formData);
+          const res = await fetch('../../ajax/maestroAjax.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
+          })
 
+          const mensaje = await res.json();
+          const accionListar = 'listar_'+maestro
+
+          alertasAjax(mensaje);
+          // Swal.fire('Hecho', mensaje, 'success');
+          fnTableListaMaestro(accionListar, maestro);
+        }
+      })
+    });
+  
+}
 formulariosAjax.forEach((formularios) => {
   formularios.addEventListener("submit", fnEnviarFormularioAjax);
 });

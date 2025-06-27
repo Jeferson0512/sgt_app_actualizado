@@ -1,7 +1,8 @@
 <?php
     const server = "localhost";
     // const db = "prestamos";
-    const db = "test_sgt_maestros";
+    // const db = "test_sgt_maestros";
+    const db = "sgt";
     // const db = "tunel_pvn";
     const user = "root";
     const password = "";

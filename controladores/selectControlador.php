@@ -18,4 +18,9 @@ class selectControlador extends selectModelo
         // header('Content-Type: application/json');
         echo json_encode($areas);
     }
+    public function fnSentidoControlador(){
+        $tunel = selectModelo::fnSelectSentido();
+        // header('Content-Type: application/json');
+        echo json_encode($tunel);
+    }
 }

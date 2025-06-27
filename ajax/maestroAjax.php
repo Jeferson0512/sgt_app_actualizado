@@ -7,11 +7,11 @@ $ins = new maestrosControlador();
 // $ins->fnListarMaestroAreas();
 // $ins->fnProcesarAjaxAreas();
 
-if ($_POST['tipoMaestro'] == 'area') {
+if ($_POST['maestro'] == 'area') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
-        case 'listar_areas':
+        case 'listar_area':
             echo $ins->fnListarAreasControlador();
             break;
 
@@ -20,7 +20,7 @@ if ($_POST['tipoMaestro'] == 'area') {
             break;
 
         case 'eliminar_area':
-            $id = $_POST['maestro_area_eliminar_id'];
+            $id = $_POST['id'];
             $resultado = $ins->fnEliminarAreaControlador($id);
             break;
 
@@ -39,7 +39,7 @@ if ($_POST['tipoMaestro'] == 'area') {
             break;
     }
 }
-if ($_POST['tipoMaestro'] == 'cargo') {
+if ($_POST['maestro'] == 'cargo') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
@@ -52,8 +52,8 @@ if ($_POST['tipoMaestro'] == 'cargo') {
             break;
 
         case 'eliminar_cargo':
-            $id = $_POST['maestro_cargo_eliminar_id'];
-            $resultado = $ins->fnEliminarCargoControlador($id);
+            $id = $_POST['id'];
+            echo $ins->fnEliminarCargoControlador($id);
             break;
 
         case 'editar_cargo':
@@ -71,7 +71,7 @@ if ($_POST['tipoMaestro'] == 'cargo') {
             break;
     }
 }
-if ($_POST['tipoMaestro'] == 'personal') {
+if ($_POST['maestro'] == 'personal') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
@@ -84,7 +84,7 @@ if ($_POST['tipoMaestro'] == 'personal') {
             break;
 
         case 'eliminar_personal':
-            $id = $_POST['maestro_personal_eliminar_id'];
+            $id = $_POST['id'];
             $resultado = $ins->fnEliminarPersonalControlador($id);
             break;
 
@@ -103,7 +103,7 @@ if ($_POST['tipoMaestro'] == 'personal') {
             break;
     }
 }
-if ($_POST['tipoMaestro'] == 'sentido') {
+if ($_POST['maestro'] == 'sentido') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
@@ -116,7 +116,7 @@ if ($_POST['tipoMaestro'] == 'sentido') {
             break;
 
         case 'eliminar_sentido':
-            $id = $_POST['maestro_sentido_eliminar_id'];
+            $id = $_POST['id'];
             $resultado = $ins->fnEliminarSentidoControlador($id);
             break;
 
@@ -135,7 +135,7 @@ if ($_POST['tipoMaestro'] == 'sentido') {
             break;
     }
 }
-if ($_POST['tipoMaestro'] == 'sistema') {
+if ($_POST['maestro'] == 'sistema') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
@@ -148,7 +148,7 @@ if ($_POST['tipoMaestro'] == 'sistema') {
             break;
 
         case 'eliminar_sistema':
-            $id = $_POST['maestro_sistema_eliminar_id'];
+            $id = $_POST['id'];
             $resultado = $ins->fnEliminarSistemaControlador($id);
             break;
 
@@ -167,7 +167,7 @@ if ($_POST['tipoMaestro'] == 'sistema') {
             break;
     }
 }
-if ($_POST['tipoMaestro'] == 'tipoVehiculo') {
+if ($_POST['maestro'] == 'tipoVehiculo') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
@@ -180,7 +180,8 @@ if ($_POST['tipoMaestro'] == 'tipoVehiculo') {
             break;
 
         case 'eliminar_tipoVehiculo':
-            echo $ins->fnEliminarTipoVehiculoControlador();
+            $id = $_POST['id'];
+            echo $ins->fnEliminarTipoVehiculoControlador($id);
             break;
 
         case 'editar_tipoVehiculo':
@@ -198,7 +199,7 @@ if ($_POST['tipoMaestro'] == 'tipoVehiculo') {
             break;
     }
 }
-if ($_POST['tipoMaestro'] == 'turno') {
+if ($_POST['maestro'] == 'turno') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
@@ -211,7 +212,7 @@ if ($_POST['tipoMaestro'] == 'turno') {
             break;
 
         case 'eliminar_turno':
-            $id = $_POST['maestro_turno_eliminar_id'];
+            $id = $_POST['id'];
             $resultado = $ins->fnEliminarTurnoControlador($id);
             break;
 
@@ -230,7 +231,7 @@ if ($_POST['tipoMaestro'] == 'turno') {
             break;
     }
 }
-if ($_POST['tipoMaestro'] == 'ubicacion') {
+if ($_POST['maestro'] == 'ubicacion') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
@@ -243,7 +244,7 @@ if ($_POST['tipoMaestro'] == 'ubicacion') {
             break;
 
         case 'eliminar_ubicacion':
-            $id = $_POST['maestro_ubicacion_eliminar_id'];
+            $id = $_POST['id'];
             $resultado = $ins->fnEliminarUbicaciconControlador($id);
             break;
 
@@ -262,7 +263,7 @@ if ($_POST['tipoMaestro'] == 'ubicacion') {
             break;
     }
 }
-if ($_POST['tipoMaestro'] == 'usuario') {
+if ($_POST['maestro'] == 'usuario') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
@@ -275,7 +276,7 @@ if ($_POST['tipoMaestro'] == 'usuario') {
             break;
 
         case 'eliminar_usuario':
-            $id = $_POST['maestro_usuario_eliminar_id'];
+            $id = $_POST['id'];
             $resultado = $ins->fnEliminarUsuarioControlador($id);
             break;
 
@@ -294,7 +295,7 @@ if ($_POST['tipoMaestro'] == 'usuario') {
             break;
     }
 }
-if ($_POST['tipoMaestro'] == 'zona') {
+if ($_POST['maestro'] == 'zona') {
     $accion =  $_POST['accion'] ?? '';
 
     switch ($accion) {
@@ -307,7 +308,7 @@ if ($_POST['tipoMaestro'] == 'zona') {
             break;
 
         case 'eliminar_zona':
-            $id = $_POST['maestro_zona_eliminar_id'];
+            $id = $_POST['id'];
             $resultado = $ins->fnEliminarZonaControlador($id);
             break;
 

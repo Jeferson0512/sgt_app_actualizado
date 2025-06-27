@@ -43,13 +43,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-									<form onsubmit="return eliminarArea()" id="formEliminarArea" action="'.serverUrl.'ajax/maestroAjax.php" method="POST" data-form="eliminar_area" autocomplete="off">
-										<input type="hidden" name="maestro_area_eliminar_id" value="'.$rows['codigo'].'">
-										<input type="hidden" name="accion" value="eliminar_area">
-										<input type="hidden" name="tipoMaestro" value="area">
-										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-									</form>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+									data-maestro="area" data-accion="eliminar_area"><i class="far fa-trash-alt"></i></button>
 								
 							</div>
 						</td>
@@ -94,13 +89,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 								<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-								<form onsubmit="return eliminarCargo()" id="formEliminarCargo" action="'.serverUrl.'ajax/maestroAjax.php" method="POST" data-form="eliminar_cargo" autocomplete="off">
-									<input type="hidden" name="maestro_cargo_eliminar_id" value="'.$rows['codigo'].'">
-									<input type="hidden" name="accion" value="eliminar_cargo">
-									<input type="hidden" name="tipoMaestro" value="cargo">
-									<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-								</form>
+								<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+								data-maestro="cargo" data-accion="eliminar_cargo"><i class="far fa-trash-alt"></i></button>
 							</div>
 						</td>
 					</tr>';
@@ -147,13 +137,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-									<form onsubmit="return eliminarPersonal()" id="formEliminarPersonal" action="'.serverUrl.'ajax/maestroAjax.php" method="POST" data-form="eliminar_personal" autocomplete="off">
-										<input type="hidden" name="maestro_personal_eliminar_id" value="'.$rows['codigo'].'">
-										<input type="hidden" name="accion" value="eliminar_personal">
-										<input type="hidden" name="tipoMaestro" value="personal">
-										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-									</form>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+									data-maestro="personal" data-accion="eliminar_personal"><i class="far fa-trash-alt"></i></button>
 								
 							</div>
 						</td>
@@ -195,14 +180,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-									<form onsubmit="return eliminarSentido()" id="formEliminarSentido" action="'.serverUrl.'ajax/maestroAjax.php" 
-										method="POST" data-form="eliminar_sentido" autocomplete="off">
-										<input type="hidden" name="maestro_sentido_eliminar_id" value="'.$rows['codigo'].'">
-										<input type="hidden" name="accion" value="eliminar_sentido">
-										<input type="hidden" name="tipoMaestro" value="sentido">
-										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-									</form>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+									data-maestro="sentido" data-accion="eliminar_sentido"><i class="far fa-trash-alt"></i></button>
 							</div>
 						</td>
 					</tr>';
@@ -243,14 +222,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-									<form onsubmit="return eliminarSistema()" id="formEliminarSistema" action="'.serverUrl.'ajax/maestroAjax.php" 
-										method="POST" data-form="eliminar_sistema" autocomplete="off">
-										<input type="hidden" name="maestro_sistema_eliminar_id" value="'.$rows['codigo'].'">
-										<input type="hidden" name="accion" value="eliminar_sistema">
-										<input type="hidden" name="tipoMaestro" value="sistema">
-										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-									</form>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+									data-maestro="sistema" data-accion="eliminar_sistema"><i class="far fa-trash-alt"></i></button>
 							</div>
 						</td>
 					</tr>';
@@ -291,8 +264,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"><i class="far fa-trash-alt"></i></button>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+									data-maestro="tipoVehiculo" data-accion="eliminar_tipoVehiculo"><i class="far fa-trash-alt"></i></button>
 							</div>
 						</td>
 					</tr>';
@@ -333,14 +306,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-									<form onsubmit="return eliminarTurno()" id="formEliminarTurno" action="'.serverUrl.'ajax/maestroAjax.php" 
-										method="POST" data-form="eliminar_turno" autocomplete="off">
-										<input type="hidden" name="maestro_turno_eliminar_id" value="'.$rows['codigo'].'">
-										<input type="hidden" name="accion" value="eliminar_turno">
-										<input type="hidden" name="tipoMaestro" value="turno">
-										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-									</form>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+									data-maestro="turno" data-accion="eliminar_turno"><i class="far fa-trash-alt"></i></button>
 							</div>
 						</td>
 					</tr>';
@@ -381,14 +348,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-									<form onsubmit="return eliminarUbicacion()" id="formEliminarUbicacion" action="'.serverUrl.'ajax/maestroAjax.php" 
-										method="POST" data-form="eliminar_ubicacion" autocomplete="off">
-										<input type="hidden" name="maestro_ubicacion_eliminar_id" value="'.$rows['codigo'].'">
-										<input type="hidden" name="accion" value="eliminar_ubicacion">
-										<input type="hidden" name="tipoMaestro" value="ubicacion">
-										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-									</form>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+									data-maestro="ubicacion" data-accion="eliminar_ubicacion"><i class="far fa-trash-alt"></i></button>
 							</div>
 						</td>
 					</tr>';
@@ -431,14 +392,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-									<form onsubmit="return eliminarUsuario()" id="formEliminarUsuario" action="'.serverUrl.'ajax/maestroAjax.php" 
-										method="POST" data-form="eliminar_usuario" autocomplete="off">
-										<input type="hidden" name="maestro_usuario_eliminar_id" value="'.$rows['codigo'].'">
-										<input type="hidden" name="accion" value="eliminar_usuario">
-										<input type="hidden" name="tipoMaestro" value="usuario">
-										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-									</form>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+									data-maestro="usuario" data-accion="eliminar_usuario"><i class="far fa-trash-alt"></i></button>
 							</div>
 						</td>
 					</tr>';
@@ -481,14 +436,8 @@ class maestrosControlador extends maestrosModelo
 						<td>
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-								
-									<form onsubmit="return eliminarZona()" id="formEliminarZona" action="'.serverUrl.'ajax/maestroAjax.php" 
-										method="POST" data-form="eliminar_zona" autocomplete="off">
-										<input type="hidden" name="maestro_zona_eliminar_id" value="'.$rows['codigo'].'">
-										<input type="hidden" name="accion" value="eliminar_zona">
-										<input type="hidden" name="tipoMaestro" value="zona">
-										<button type="submit" class="btn btn-warning"><i class="far fa-trash-alt"></i></button>
-									</form>
+									<button class="btn btn-warning btnEliminar" data-id="'.$rows['codigo'].'"
+									data-maestro="zona" data-accion="eliminar_zona"><i class="far fa-trash-alt"></i></button>
 							</div>
 						</td>
 					</tr>';
@@ -640,7 +589,6 @@ class maestrosControlador extends maestrosModelo
 
 	}
 	public function fnEliminarAreaControlador($id){
-		$id = $_POST['maestro_area_eliminar_id'];
 		$eliminarArea = maestrosModelo::fnEliminarArea($id);
 
 		$alerta = [
@@ -679,7 +627,6 @@ class maestrosControlador extends maestrosModelo
 		echo json_encode($alerta);
 	}
 	public function fnEliminarCargoControlador($id){
-		$id = $_POST['maestro_cargo_eliminar_id'];
 		$eliminarCargo = maestrosModelo::fnEliminarCargo($id);
 
 		$alerta = [
@@ -731,7 +678,7 @@ class maestrosControlador extends maestrosModelo
 		echo json_encode($alerta);
 	}
 	public function fnEliminarPersonalControlador($id){
-		$id = $_POST['maestro_personal_eliminar_id'];
+		// $id = $_POST['id'];
 		$personal = maestrosModelo::fnEliminarPersonal($id);
 
 		$alerta = [
@@ -767,7 +714,7 @@ class maestrosControlador extends maestrosModelo
 		echo json_encode($alerta);
 	}
 	public function fnEliminarSentidoControlador($id){
-		$id = $_POST['maestro_sentido_eliminar_id'];
+		// $id = $_POST['id'];
 		$sentido = maestrosModelo::fnEliminarSentido($id);
 
 		$alerta = [
@@ -803,7 +750,7 @@ class maestrosControlador extends maestrosModelo
 		echo json_encode($alerta);
 	}
 	public function fnEliminarSistemaControlador($id){
-		$id = $_POST['maestro_sistema_eliminar_id'];
+		// $id = $_POST['id'];
 		$sistema = maestrosModelo::fnEliminarSistema($id);
 
 		$alerta = [
@@ -838,8 +785,8 @@ class maestrosControlador extends maestrosModelo
 		];
 		echo json_encode($alerta);
 	}
-	public function fnEliminarTipoVehiculoControlador(){
-		$id = $_POST['maestro_tipoVehiculo_eliminar_id'];
+	public function fnEliminarTipoVehiculoControlador($id){
+		// $id = $_POST['id'];
 		$tipoVehiculo = maestrosModelo::fnEliminarTipoVehiculo($id);
 
 		$alerta = [
@@ -875,7 +822,7 @@ class maestrosControlador extends maestrosModelo
 		echo json_encode($alerta);
 	}
 	public function fnEliminarTurnoControlador($id){
-		$id = $_POST['maestro_turno_eliminar_id'];
+		// $id = $_POST['id'];
 		$turno = maestrosModelo::fnEliminarTurno($id);
 
 		$alerta = [
@@ -911,7 +858,7 @@ class maestrosControlador extends maestrosModelo
 		echo json_encode($alerta);
 	}
 	public function fnEliminarUbicaciconControlador($id){
-		$id = $_POST['maestro_ubicacion_eliminar_id'];
+		// $id = $_POST['id'];
 		$ubicacion = maestrosModelo::fnEliminarUbicacion($id);
 
 		$alerta = [
@@ -926,7 +873,7 @@ class maestrosControlador extends maestrosModelo
 	// Modelo para agregar Usuario Maestra
 	public function fnRegistrarUsuarioControlador() {}
 	public function fnEliminarUsuarioControlador($id){
-		$id = $_POST['maestro_usuario_eliminar_id'];
+		// $id = $_POST['id'];
 		// $sentido = maestrosModelo::fnEliminarUsuario($id);
 
 		$alerta = [
@@ -964,7 +911,7 @@ class maestrosControlador extends maestrosModelo
 		echo json_encode($alerta);
 	}
 	public function fnEliminarZonaControlador($id){
-		$id = $_POST['maestro_zona_eliminar_id'];
+		// $id = $_POST['id'];
 		$zona = maestrosModelo::fnEliminarZona($id);
 
 		$alerta = [

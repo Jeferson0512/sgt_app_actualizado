@@ -15,6 +15,10 @@ switch ($accion) {
         $ins->fnCargoControlador();
         break;
     
+    case 'sentido':
+        $ins->fnSentidoControlador();
+        break;
+    
     default:
         # code...
         break;

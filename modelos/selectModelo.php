@@ -11,4 +11,8 @@ class selectModelo extends mainModelo {
         $sql = mainModelo::fnConectar()->query('SELECT codigo, nombre FROM cargo ORDER BY codigo ASC');
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
+    protected static function fnSelectSentido(){
+        $sql = mainModelo::fnConectar()->query('SELECT codigo, nombre FROM sentido ORDER BY codigo ASC');
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
