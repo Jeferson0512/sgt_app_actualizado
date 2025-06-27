@@ -14,11 +14,27 @@ switch ($accion) {
     case 'cargo':
         $ins->fnCargoControlador();
         break;
-    
     case 'sentido':
         $ins->fnSentidoControlador();
         break;
-    
+    case 'turno':
+        $ins->fnTurnoControlador();
+        break;
+    case 'sistema':
+        $ins->fnSistemaControlador();
+        break;
+    case 'tipoEquipo':
+        $ins->fnTipoEquipoControlador();
+        break;
+    case 'equipo':
+        $ins->fnEquipoControlador();
+        break;
+    case 'personal':
+        $ins->fnPersonalControlador();
+        break;
+    case 'estadoEquipo':
+        $ins->fnEstadoEquipoControlador();
+        break;    
     default:
         # code...
         break;

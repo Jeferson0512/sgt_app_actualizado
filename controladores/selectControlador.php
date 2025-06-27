@@ -23,4 +23,34 @@ class selectControlador extends selectModelo
         // header('Content-Type: application/json');
         echo json_encode($tunel);
     }
+    public function fnTurnoControlador(){
+        $tunel = selectModelo::fnSelectTurno();
+        // header('Content-Type: application/json');
+        echo json_encode($tunel);
+    }
+    public function fnSistemaControlador(){
+        $tunel = selectModelo::fnSelectSistema();
+        // header('Content-Type: application/json');
+        echo json_encode($tunel);
+    }
+    public function fnTipoEquipoControlador(){
+        $tunel = selectModelo::fnSelectTipoEquipo();
+        // header('Content-Type: application/json');
+        echo json_encode($tunel);
+    }
+    public function fnEquipoControlador(){
+        $tunel = selectModelo::fnSelectEquipo();
+        // header('Content-Type: application/json');
+        echo json_encode($tunel);
+    }
+    public function fnPersonalControlador(){
+        $tunel = selectModelo::fnSelectPersonal();
+        // header('Content-Type: application/json');
+        echo json_encode($tunel);
+    }
+    public function fnEstadoEquipoControlador(){
+        $tunel = selectModelo::fnSelectEstadoEquipo();
+        // header('Content-Type: application/json');
+        echo json_encode($tunel);
+    }
 }
