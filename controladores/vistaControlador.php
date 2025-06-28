@@ -10,6 +10,7 @@ class vistaControlador
         "usuario",
         "area",
         "mantenimiento/correctivo",
+        "mantenimiento/correctivo/detalle",
         "maestros/usuario",
         "maestro/area", // agregar más si necesitas
         "maestro/cargo",
