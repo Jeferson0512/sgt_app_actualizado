@@ -14,13 +14,14 @@ if ($_POST['mantenimiento'] == 'correctivo') {
         case 'listar_correctivo':
             echo $ins->fnListarCorrectivoControlador();
             break;
-
         case 'registrar_correctivo':
             echo $ins->fnRegistrarManttoCorrectivoControlador();
             break;
-
         case 'eliminar_correctivo':
             echo $ins->fnEliminarManttoCorrectivoControlador();
+            break;
+        case 'obtener_correctivo':
+            echo $ins->fnObtenerCorrectivoControlador();
             break;
 
         case 'editar_area':
