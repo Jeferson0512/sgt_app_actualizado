@@ -1,5 +1,5 @@
 const formMaestroAjax = document.querySelectorAll(".formMaestro");
-const btnEliminarMaestroAjax = document.querySelectorAll(".btnEliminarMaestro");
+const btnEditarMaestroAjax = document.querySelectorAll(".btnEditarMaestro");
 async function fnEnviarFormMaestroAjax(e) {
   e.preventDefault();
 
@@ -23,15 +23,16 @@ async function fnEnviarFormMaestroAjax(e) {
   const confirm = await confirmAlerta(tipo);
 
   if (confirm.value) {
-    alert("ENTRO AL FORM")
+    // alert("ENTRO AL FORM")
     fetch(action, config)
       .then((response) => response.json())
       .then((resultado) => {
         alertasAjax(resultado); //-> Indicamos que nos envie un mensaje de alerta de acuerdo a lo que nos indique el controlador
 
-        this.reset(); //-> reseteamos el FORMULARIO
+        e.target.reset(); //-> reseteamos el FORMULARIO
+        // this.reset(); //-> reseteamos el FORMULARIO
 
-        $("#modalMaestro_"+maestro).modal("hide"); //-> Hacemos el modal dinamico identificando la subCategori
+        $("#modalMaestro_" + maestro).modal("hide"); //-> Hacemos el modal dinamico identificando la subCategori
 
         fnTableListaMaestro(accionListar, maestro); //-> Actualizamos la tabla
       });
@@ -61,10 +62,11 @@ function fnTableListaMaestro(accion, maestro) {
 }
 
 // Elimina las subcategorias de los maestros
-function fnBtnEliminarMaestroAjax() {
-  document.querySelectorAll(".btnEliminar").forEach((btn) => {
+async function fnBtnEliminarMaestroAjax() {
+  document.querySelectorAll(".btnEliminarMaestro").forEach((btn) => {
     btn.addEventListener("click", async (e) => {
       // const id = btn.dataset.id; //-> Obtiene el data-id que tiene el boton
+
       const { id, maestro, accion } = btn.dataset; //-> obtiene los 3 data-attrs(data-atributos)
 
       /** PRIMERA MANERA DE PREGUNTAR */
@@ -99,6 +101,7 @@ function fnBtnEliminarMaestroAjax() {
         });
 
         const mensaje = await res.json(); //-> Recibimos la respuesta y lo convertimos en JSON
+
         const accionListar = "listar_" + maestro; //-> Editamos el parametro ACCION para cambiarlo de acuerdo a la subcategoria que estamos
 
         alertasAjax(mensaje); //-> Indicamos que nos envie un mensaje de alerta de acuerdo a lo que nos indique el controlador
@@ -108,7 +111,14 @@ function fnBtnEliminarMaestroAjax() {
     });
   });
 }
-
+// function fnAgregarBotonEliminarMaestro()
+// {
+//   // const btnEliminarMaestroAjax = document.querySelectorAll(".btnEliminarMaestro");
+//   //Obtiene  el boton de la tabla con "btnEliminarMaestro" de Maestros
+//   document.querySelectorAll(".btnEliminarMaestro").forEach((btn) => {
+//     btn.addEventListener("click", fnBtnEliminarMaestroAjax);
+//   });
+// }
 //Obtiene el formulario del Modal con "formMaestroAjax" de Maestros
 formMaestroAjax.forEach((form) => {
   form.addEventListener("submit", fnEnviarFormMaestroAjax); //-> Si realiza un evento SUBMIT, que realice la funcion indicada

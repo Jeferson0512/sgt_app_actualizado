@@ -16,14 +16,16 @@ if ($_POST['maestro'] == 'area') {
             break;
 
         case 'registrar_area':
-            echo $ins->fnRegistrarAreaControlador();
+            echo $ins->fnAreaControlador();
             break;
 
         case 'eliminar_area':
             $id = $_POST['id'];
             $resultado = $ins->fnEliminarAreaControlador($id);
             break;
-
+        case 'obtener_area':
+            echo $ins->fnObtenerAreaControlador();
+            break;
         case 'editar_area':
             // $id = intval($_POST['id_area'] ?? 0);
             // $nombre = trim($_POST['nombre_area'] ?? '');
@@ -48,14 +50,16 @@ if ($_POST['maestro'] == 'cargo') {
             break;
 
         case 'registrar_cargo':
-            echo $ins->fnRegistrarCargoControlador();
+            echo $ins->fnCargoControlador();
             break;
 
         case 'eliminar_cargo':
             $id = $_POST['id'];
             echo $ins->fnEliminarCargoControlador($id);
             break;
-
+        case 'obtener_cargo':
+            echo $ins->fnObtenerCargoControlador();
+            break;
         case 'editar_cargo':
             // $id = intval($_POST['id_area'] ?? 0);
             // $nombre = trim($_POST['nombre_area'] ?? '');
@@ -80,14 +84,15 @@ if ($_POST['maestro'] == 'personal') {
             break;
 
         case 'registrar_personal':
-            echo $ins->fnRegistrarPersonalControlador();
+            echo $ins->fnPersonalControlador();
             break;
 
         case 'eliminar_personal':
-            $id = $_POST['id'];
-            $resultado = $ins->fnEliminarPersonalControlador($id);
+            echo $ins->fnEliminarPersonalControlador();
             break;
-
+        case 'obtener_personal':
+            echo $ins->fnObtenerPersonalControlador();
+            break;
         case 'editar_personal':
             // $id = intval($_POST['id_area'] ?? 0);
             // $nombre = trim($_POST['nombre_area'] ?? '');
@@ -112,14 +117,16 @@ if ($_POST['maestro'] == 'sentido') {
             break;
 
         case 'registrar_sentido':
-            echo $ins->fnRegistrarSentidoControlador();
+            echo $ins->fnSentidoControlador();
             break;
 
         case 'eliminar_sentido':
             $id = $_POST['id'];
             $resultado = $ins->fnEliminarSentidoControlador($id);
             break;
-
+        case 'obtener_sentido':
+            echo $ins->fnObtenerSentidoControlador();
+            break;
         case 'editar_sentido':
             // $id = intval($_POST['id_area'] ?? 0);
             // $nombre = trim($_POST['nombre_area'] ?? '');
@@ -144,14 +151,16 @@ if ($_POST['maestro'] == 'sistema') {
             break;
 
         case 'registrar_sistema':
-            echo $ins->fnRegistrarSistemaControlador();
+            echo $ins->fnSistemaControlador();
             break;
 
         case 'eliminar_sistema':
             $id = $_POST['id'];
             $resultado = $ins->fnEliminarSistemaControlador($id);
             break;
-
+        case 'obtener_sistema':
+            echo $ins->fnObtenerSistemaControlador();
+            break;
         case 'editar_sistema':
             // $id = intval($_POST['id_area'] ?? 0);
             // $nombre = trim($_POST['nombre_area'] ?? '');
@@ -174,11 +183,12 @@ if ($_POST['maestro'] == 'tipoVehiculo') {
         case 'listar_tipoVehiculo':
             echo $ins->fnListarTipoVehiculoControlador();
             break;
-
         case 'registrar_tipoVehiculo':
-            echo $ins->fnRegistrarTipoVehiculoControlador();
+            echo $ins->fnTipoVehiculoControlador();
             break;
-
+        case 'obtener_tipoVehiculo':
+            echo $ins->fnObtenerTipoVehiculoControlador();
+            break;
         case 'eliminar_tipoVehiculo':
             $id = $_POST['id'];
             echo $ins->fnEliminarTipoVehiculoControlador($id);
@@ -208,14 +218,16 @@ if ($_POST['maestro'] == 'turno') {
             break;
 
         case 'registrar_turno':
-            echo $ins->fnRegistrarTurnoControlador();
+            echo $ins->fnTurnoControlador();
             break;
 
         case 'eliminar_turno':
             $id = $_POST['id'];
             $resultado = $ins->fnEliminarTurnoControlador($id);
             break;
-
+        case 'obtener_turno':
+            echo $ins->fnObtenerTurnoControlador();
+            break;
         case 'editar_turno':
             // $id = intval($_POST['id_area'] ?? 0);
             // $nombre = trim($_POST['nombre_area'] ?? '');
@@ -240,14 +252,16 @@ if ($_POST['maestro'] == 'ubicacion') {
             break;
 
         case 'registrar_ubicacion':
-            echo $ins->fnRegistrarUbicacionControlador();
+            echo $ins->fnUbicacionControlador();
             break;
 
         case 'eliminar_ubicacion':
             $id = $_POST['id'];
             $resultado = $ins->fnEliminarUbicaciconControlador($id);
             break;
-
+        case 'obtener_ubicacion':
+            echo $ins->fnObtenerUbicacionControlador();
+            break;
         case 'editar_ubicacion':
             // $id = intval($_POST['id_area'] ?? 0);
             // $nombre = trim($_POST['nombre_area'] ?? '');
@@ -272,9 +286,11 @@ if ($_POST['maestro'] == 'usuario') {
             break;
 
         case 'registrar_usuario':
-            echo $ins->fnRegistrarUsuarioControlador();
+            echo $ins->fnUsuarioControlador();
             break;
-
+        case 'obtener_usuario':
+            // echo $ins->fnObtenerUsuarioControlador();
+            break;
         case 'eliminar_usuario':
             $id = $_POST['id'];
             $resultado = $ins->fnEliminarUsuarioControlador($id);
@@ -304,14 +320,16 @@ if ($_POST['maestro'] == 'zona') {
             break;
 
         case 'registrar_zona':
-            echo $ins->fnRegistrarZonaControlador();
+            echo $ins->fnZonaControlador();
             break;
 
         case 'eliminar_zona':
             $id = $_POST['id'];
             $resultado = $ins->fnEliminarZonaControlador($id);
             break;
-
+        case 'obtener_zona':
+            echo $ins->fnObtenerZonaControlador();
+            break;
         case 'editar_zona':
             // $id = intval($_POST['id_area'] ?? 0);
             // $nombre = trim($_POST['nombre_area'] ?? '');

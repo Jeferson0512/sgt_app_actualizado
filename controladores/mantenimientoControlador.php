@@ -50,11 +50,11 @@ class mantenimientoControlador extends mantenimientoModelo
 							<div class="row" style="margin: 0px">
 									<a href="" class="btn btn-success"></a>
                                     <button class="btn btn-info btnEditarMantto"
-              data-id="' . $rows['CodigoCorrectivo'] . '"
-              data-mantenimiento="correctivo"
-              data-accion="obtener_correctivo">
-              <i class="fas fa-edit"></i>
-      </button>
+                                            data-id="' . $rows['CodigoCorrectivo'] . '"
+                                            data-mantenimiento="correctivo"
+                                            data-accion="obtener_correctivo">
+                                            <i class="fas fa-edit"></i>
+                                    </button>
 									<button class="btn btn-warning btnEliminarMantto" data-id="' . $rows['CodigoCorrectivo'] . '"
 									data-mantenimiento="correctivo" data-accion="eliminar_correctivo"><i class="far fa-trash-alt"></i></button>
 								
@@ -72,7 +72,7 @@ class mantenimientoControlador extends mantenimientoModelo
     public function fnRegistrarManttoCorrectivoControlador()
     {
         $esEdicion = !empty($_POST['id_correctivo']);
-        
+
         $fechaCorrectivo = $_POST['correctivo_fechaCorrectivo'];
         $sentido = $_POST['correctivo_sentido'];
         $sistema = $_POST['correctivo_sistema'];

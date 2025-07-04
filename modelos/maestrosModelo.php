@@ -42,23 +42,39 @@ class maestrosModelo extends mainModelo
         $sql->bindParam(":Usuario", $datos['Usuario']);
         // $sql->execute();
         if ($sql->execute()) {
-            return [1, 'Area registrada correctamente.'];
+            return [1, 'Area registrado correctamente.'];
         } else {
             return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
         }
 
         return $sql;
     }
-
-    protected static function fnEditarArea($id, $datos)
+    protected static function fnActualizarArea($datos)
     {
-        $sql = mainModelo::fnConectar()->prepare('');
+        // try {
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_actualizarAreaMaestra(:Codigo, :Nombre, :Abreviatura, :Estado, :User)');
+        $sql->bindParam(":Codigo", $datos['Codigo']);
+        $sql->bindParam(":Nombre", $datos['Nombre']);
+        $sql->bindParam(":Abreviatura", $datos['Abreviatura']);
+        $sql->bindParam(":Estado", $datos['Estado']);
+        $sql->bindParam(":User", $datos['User']);
+        // return $sql->fetch(PDO::FETCH_ASSOC);
         if ($sql->execute()) {
-            return [1, 'Area editada correctamente'];
+            return [1, 'Area actualizado correctamente.'];
         } else {
-            return [0, 'Error al preparar la consulta ' . $sql->errorInfo()];
+            return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
         }
-        // return $sql;
+        return $sql;
+        // } catch (PDOException $e) {
+
+        // }
+    }
+    protected static function fnObtenerArea($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT codigo, nombre, abreviatura FROM area WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
     }
     protected static function fnEliminarArea($id)
     {
@@ -77,6 +93,13 @@ class maestrosModelo extends mainModelo
         // return $sql->fetchAll(PDO::FETCH_ASSOC);
         return $sql->fetchAll();
     }
+    protected static function fnObtenerCargo($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT * FROM cargo WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
     protected static function fnRegistrarCargo($datos)
     {
         $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarCargoMaestra(:Nombre, :Descripcion, :Estado, :Usuario)');
@@ -93,8 +116,22 @@ class maestrosModelo extends mainModelo
         } else {
             return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
         }
-
         return $sql;
+    }
+    protected static function fnActualizarCargo($datos)
+    {        
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_actualizarCargoMaestra(:Codigo, :Nombre, :Descripcion, :Estado, :Usuario)');
+        $sql->bindParam(":Codigo", $datos['Codigo']);
+        $sql->bindParam(":Nombre", $datos['Nombre']);
+        $sql->bindParam(":Descripcion", $datos['Descripcion']);
+        $sql->bindParam(":Estado", $datos['Estado']);
+        $sql->bindParam(":Usuario", $datos['Usuario']);
+        // $sql->execute();
+        if ($sql->execute()) {
+            return [1, 'Cargo actualizado correctamente.'];
+        } else {
+            return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
+        }
     }
     protected static function fnEliminarCargo($id)
     {
@@ -113,6 +150,13 @@ class maestrosModelo extends mainModelo
         // return $sql->fetchAll(PDO::FETCH_ASSOC);
         return $sql->fetchAll();
     }
+    protected static function fnObtenerPersonal($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT * FROM personal WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
     protected static function fnRegistrarPersonal($datos)
     {
         $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarPersonalMaestra(:Nombres, :ApellidoPa, :ApellidoMa, :Correo, :FechaNacimiento, :DNI, :Celular, :Area, :Cargo, :Estado, :Usuario)');
@@ -123,8 +167,8 @@ class maestrosModelo extends mainModelo
         $sql->bindParam(":FechaNacimiento", $datos['FechaNacimiento']);
         $sql->bindParam(":DNI", $datos['DNI']);
         $sql->bindParam(":Celular", $datos['Celular']);
-        $sql->bindParam(":Area", $datos['Area']);
-        $sql->bindParam(":Cargo", $datos['Cargo']);
+        $sql->bindParam(":Area", $datos['CodigoArea']);
+        $sql->bindParam(":Cargo", $datos['CodigoCargo']);
         $sql->bindParam(":Estado", $datos['Estado']);
         $sql->bindParam(":Usuario", $datos['Usuario']);
         if ($sql->execute()) {
@@ -134,6 +178,28 @@ class maestrosModelo extends mainModelo
         }
 
         return $sql;
+    }
+    protected static function fnActualizarPersonal($datos)
+    {        
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_actualizarPersonalMaestra(:Codigo, :CodigoArea, :CodigoCargo, :Nombres, :Apepat, :Apemat, :Email, :FechaNacimiento, :Dni, :Celular, :Estado, :Usuario)');
+        $sql->bindParam(":Codigo", $datos['Codigo']);
+        $sql->bindParam(":CodigoArea", $datos['CodigoArea']);
+        $sql->bindParam(":CodigoCargo", $datos['CodigoCargo']);
+        $sql->bindParam(":Nombres", $datos['Nombres']);
+        $sql->bindParam(":Apepat", $datos['ApellidoPa']);
+        $sql->bindParam(":Apemat", $datos['ApellidoMa']);
+        $sql->bindParam(":Email", $datos['Correo']);
+        $sql->bindParam(":FechaNacimiento", $datos['FechaNacimiento']);
+        $sql->bindParam(":Dni", $datos['DNI']);
+        $sql->bindParam(":Celular", $datos['Celular']);
+        $sql->bindParam(":Estado", $datos['Estado']);
+        $sql->bindParam(":Usuario", $datos['Usuario']);
+        // $sql->execute();
+        if ($sql->execute()) {
+            return [1, 'Personal actualizado correctamente.'];
+        } else {
+            return [1, 'Error la preparar la consulta: ' . $sql->errorInfo()];
+        }
     }
     protected static function fnEliminarPersonal($id)
     {
@@ -152,6 +218,13 @@ class maestrosModelo extends mainModelo
         // return $sql->fetchAll(PDO::FETCH_ASSOC);
         return $sql->fetchAll();
     }
+    protected static function fnObtenerSentido($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT * FROM sentido WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
     protected static function fnRegistrarSentido($datos)
     {
         $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarSentidoMaestra(:Nombre, :Estado, :Usuario)');
@@ -166,6 +239,20 @@ class maestrosModelo extends mainModelo
         }
 
         return $sql;
+    }
+    protected static function fnActualizarSentido($datos)
+    {        
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_actualizarSentidoMaestra(:Codigo, :Nombre, :Estado, :Usuario)');
+        $sql->bindParam(":Codigo", $datos['Codigo']);
+        $sql->bindParam(":Nombre", $datos['Nombre']);
+        $sql->bindParam(":Estado", $datos['Estado']);
+        $sql->bindParam(":Usuario", $datos['Usuario']);
+        // $sql->execute();
+        if ($sql->execute()) {
+            return [1, 'Sentido actualizado correctamente.'];
+        } else {
+            return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
+        }
     }
     protected static function fnEliminarSentido($id)
     {
@@ -184,6 +271,13 @@ class maestrosModelo extends mainModelo
         // return $sql->fetchAll(PDO::FETCH_ASSOC);
         return $sql->fetchAll();
     }
+    protected static function fnObtenerSistema($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT * FROM sistemas WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
     protected static function fnRegistrarSistema($datos)
     {
         $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarSistemaMaestra(:Nombre, :Estado, :Usuario)');
@@ -197,6 +291,20 @@ class maestrosModelo extends mainModelo
         }
 
         return $sql;
+    }
+    protected static function fnActualizarSistema($datos)
+    {        
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_actualizarSistemaMaestra(:Codigo, :Nombre, :Estado, :Usuario)');
+        $sql->bindParam(":Codigo", $datos['Codigo']);
+        $sql->bindParam(":Nombre", $datos['Nombre']);
+        $sql->bindParam(":Estado", $datos['Estado']);
+        $sql->bindParam(":Usuario", $datos['Usuario']);
+        // $sql->execute();
+        if ($sql->execute()) {
+            return [1, 'Sistema actualizado correctamente.'];
+        } else {
+            return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
+        }
     }
     protected static function fnEliminarSistema($id)
     {
@@ -215,6 +323,13 @@ class maestrosModelo extends mainModelo
         // return $sql->fetchAll(PDO::FETCH_ASSOC);
         return $sql->fetchAll();
     }
+    protected static function fnObtenerTipoVehiculo($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT * FROM tipo_vehiculo WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
     protected static function fnRegistrarTipoVehiculo($datos)
     {
         $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarTipoVehiculoMaestra(:Nombre, :Estado, :Usuario)');
@@ -228,6 +343,20 @@ class maestrosModelo extends mainModelo
         }
 
         return $sql;
+    }
+    protected static function fnActualizarTipoVehiculo($datos)
+    {        
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_actualizarTipoVehiculoMaestra(:Codigo, :Nombre, :Estado, :Usuario)');
+        $sql->bindParam(":Codigo", $datos['Codigo']);
+        $sql->bindParam(":Nombre", $datos['Nombre']);
+        $sql->bindParam(":Estado", $datos['Estado']);
+        $sql->bindParam(":Usuario", $datos['Usuario']);
+        // $sql->execute();
+        if ($sql->execute()) {
+            return [1, 'Tipo de Vehiculo actualizado correctamente.'];
+        } else {
+            return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
+        }
     }
     protected static function fnEliminarTipoVehiculo($id)
     {
@@ -246,6 +375,13 @@ class maestrosModelo extends mainModelo
         // return $sql->fetchAll(PDO::FETCH_ASSOC);
         return $sql->fetchAll();
     }
+    protected static function fnObtenerTurno($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT * FROM turno WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
     protected static function fnRegistrarTurno($datos)
     {
         $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarTurnoMaestra(:Nombre, :Estado, :Usuario)');
@@ -259,6 +395,20 @@ class maestrosModelo extends mainModelo
         }
 
         return $sql;
+    }
+    protected static function fnActualizarTurno($datos)
+    {        
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_actualizarTurnoMaestra(:Codigo, :Nombre, :Estado, :Usuario)');
+        $sql->bindParam(":Codigo", $datos['Codigo']);
+        $sql->bindParam(":Nombre", $datos['Nombre']);
+        $sql->bindParam(":Estado", $datos['Estado']);
+        $sql->bindParam(":Usuario", $datos['Usuario']);
+        // $sql->execute();
+        if ($sql->execute()) {
+            return [1, 'Turno actualizado correctamente.'];
+        } else {
+            return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
+        }
     }
     protected static function fnEliminarTurno($id)
     {
@@ -277,6 +427,13 @@ class maestrosModelo extends mainModelo
         // return $sql->fetchAll(PDO::FETCH_ASSOC);
         return $sql->fetchAll();
     }
+    protected static function fnObtenerUbicacion($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT * FROM ubicacion WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
     protected static function fnRegistrarUbicacion($datos)
     {
         $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarUbicacionMaestra(:Nombre, :Estado, :Usuario)');
@@ -291,6 +448,20 @@ class maestrosModelo extends mainModelo
 
         return $sql;
     }
+    protected static function fnActualizarUbicacion($datos)
+    {        
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_actualizarUbicacionMaestra(:Codigo, :Nombre, :Estado, :Usuario)');
+        $sql->bindParam(":Codigo", $datos['Codigo']);
+        $sql->bindParam(":Nombre", $datos['Nombre']);
+        $sql->bindParam(":Estado", $datos['Estado']);
+        $sql->bindParam(":Usuario", $datos['Usuario']);
+        // $sql->execute();
+        if ($sql->execute()) {
+            return [1, 'Ubicación actualizado correctamente.'];
+        } else {
+            return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
+        }
+    }
     protected static function fnEliminarUbicacion($id)
     {
         $sql = mainModelo::fnConectar()->prepare('DELETE FROM ubicacion where codigo = :ID');
@@ -300,20 +471,33 @@ class maestrosModelo extends mainModelo
         } else {
             return [0, 'Error al preparar la consulta ' . $sql->errorInfo()];
         }
+    }    
+    protected static function fnObtenerUsuario($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT * FROM usuarios WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
     }
-
     protected static function fnListarZona()
     {
         $sql = mainModelo::fnConectar()->query('SELECT z.codigo as codigo, z.nombre as nombre, z.estado as estado, s.nombre tunel 
-            FROM zona as z INNER JOIN sentido as s ON s.codigo = z.sentido_codigo  ORDER BY tunel, nombre ASC');
+            FROM zona as z LEFT JOIN sentido as s ON s.codigo = z.codsentido  ORDER BY tunel, nombre ASC');
         // return $sql->fetchAll(PDO::FETCH_ASSOC);
         return $sql->fetchAll();
+    }
+    protected static function fnObtenerZona($id)
+    {
+        $sql = mainModelo::fnConectar()->prepare('SELECT * FROM zona WHERE codigo = :ID');
+        $sql->bindParam(":ID", $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
     }
     protected static function fnRegistrarZona($datos)
     {
         $sql = mainModelo::fnConectar()->prepare('CALL sp_agregarZonaMaestra(:Nombre, :Sentido, :Estado, :Usuario)');
         $sql->bindParam(":Nombre", $datos['Nombre']);
-        $sql->bindParam(":Sentido", $datos['Sentido']);
+        $sql->bindParam(":Sentido", $datos['CodigoSentido']);
         $sql->bindParam(":Estado", $datos['Estado']);
         $sql->bindParam(":Usuario", $datos['Usuario']);
         if ($sql->execute()) {
@@ -323,6 +507,21 @@ class maestrosModelo extends mainModelo
         }
 
         return $sql;
+    }
+    protected static function fnActualizarZona($datos)
+    {        
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_actualizarZonaMaestra(:Codigo, :Nombre, :CodigoSentido, :Estado, :Usuario)');
+        $sql->bindParam(":Codigo", $datos['Codigo']);
+        $sql->bindParam(":Nombre", $datos['Nombre']);
+        $sql->bindParam(":CodigoSentido", $datos['CodigoSentido']);
+        $sql->bindParam(":Estado", $datos['Estado']);
+        $sql->bindParam(":Usuario", $datos['Usuario']);
+        // $sql->execute();
+        if ($sql->execute()) {
+            return [1, 'Sistema actualizado correctamente.'];
+        } else {
+            return [0, 'Error la preparar la consulta: ' . $sql->errorInfo()];
+        }
     }
     protected static function fnEliminarZona($id)
     {
