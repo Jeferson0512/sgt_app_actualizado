@@ -1,0 +1,29 @@
+RewriteEngine On
+RewriteBase /sgt_app_actualizado/
+
+# Evita que Apache intente "adivinar" archivos (puede romper rutas)
+Options -MultiViews
+# (opcional) Sin listado de carpetas
+Options All -Indexes
+
+# Deja pasar archivos y carpetas reales (css, js, imágenes, etc.)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Raíz del sitio → index.php
+RewriteRule ^$ index.php [L]
+
+# Quita barra final (excepto en raíz), para que coincidan las reglas
+RewriteCond %{REQUEST_URI} .+/$
+RewriteRule ^(.+?)/$ /sgt_app_actualizado/$1 [R=302,L]
+
+# RUTA con ID al final:
+#  /mantenimiento/correctivo/17
+#  => index.php?views=mantenimiento/correctivo&id=17
+RewriteRule ^([A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*)/([0-9]+)$ index.php?views=$1&id=$2 [QSA,L]
+
+# RUTA normal (con subrutas):
+#  /home, /maestro/area, /mantenimiento/correctivo
+#  => index.php?views=home | maestro/area | mantenimiento/correctivo
+RewriteRule ^([A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*)$ index.php?views=$1 [QSA,L]
