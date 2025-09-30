@@ -12,7 +12,8 @@ class vistasModelo
         "reservation-new", "reservation-pending", "reservation-search", "reservation-update",
         "user-list", "reservation-reservation", "user-new", "user-search", "user-update",
         "maestro-area", "maestro-cargo", "maestro-personal", "maestro-sentido", "maestro-sistemas", 
-        "maestro-turno", "maestro-ubicacion", "maestro-usuarios", "maestro-zona", "maestro-tipo-vehiculo"];
+        "maestro-turno", "maestro-ubicacion", "maestro-usuarios", "maestro-zona", "maestro-tipo-vehiculo",
+        "mantenimiento-calendario"];
 
         if (in_array($vistas, $listaBlanca)) {
             if (is_file("./vistas/contenidos/" . $vistas . "-view.php")) {

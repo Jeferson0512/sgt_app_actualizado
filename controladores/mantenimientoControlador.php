@@ -10,7 +10,9 @@ class mantenimientoControlador extends mantenimientoModelo
     public function fnListarCorrectivoControlador()
     {
         $tabla = "";
+        $EstadoEquipo = "";
         $datos = mantenimientoModelo::fnListarCorrectivo();
+
 
         $tabla .= '<div class="table-responsive">
 				<table class="table table-dark table-sm">
@@ -33,6 +35,7 @@ class mantenimientoControlador extends mantenimientoModelo
 					<tbody>';
         $contador = 1;
         foreach ($datos as $rows) {
+
             $tabla .= '
 					<tr class="text-center" >
 						<td>' . $contador . '</td>
@@ -43,7 +46,7 @@ class mantenimientoControlador extends mantenimientoModelo
 						<td>' . $rows['Sistema'] . '</td>
 						<td>' . $rows['TipoEquipo'] . '</td>
 						<td>' . $rows['Equipo'] . '</td>
-						<td>' . $rows['EstadoEquipo'] . '</td>
+						<td> '. $this->generarBadge($rows['EstadoEquipo']) . ' </a> </td>
 						<td>' . $rows['Personal'] . '</td>
 						<td>' . $rows['Observaciones'] . '</td>
 						<td>
@@ -133,5 +136,20 @@ class mantenimientoControlador extends mantenimientoModelo
             "modal" => "agregarUbicacionMaestra"
         ];
         echo json_encode($alerta);
+    }
+    function generarBadge($estado)
+    {
+        switch ($estado) {
+            case 'AVERIADO':
+                $color = 'warning'; // amarillo
+                break;
+            case 'INOPERATIVO':
+                $color = 'danger'; // rojo
+                break;
+            default:
+                $color = 'success'; // verde
+        }
+
+        return "<a class='badge badge-$color'>" . ucfirst($estado) . "</a>";
     }
 }

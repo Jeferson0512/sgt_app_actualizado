@@ -26,8 +26,14 @@ switch ($accion) {
     case 'tipoEquipo':
         $ins->fnTipoEquipoControlador();
         break;
+    case 'tipoEquipoxSistema':
+        $ins->fnTipoEquipoxSistemaControlador();
+        break;
     case 'equipo':
         $ins->fnEquipoControlador();
+        break;
+    case 'equipoxTipoEquipo':
+        $ins->fnEquipoxTipoEquipoControlador();
         break;
     case 'personal':
         $ins->fnPersonalControlador();

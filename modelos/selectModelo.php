@@ -27,8 +27,20 @@ class selectModelo extends mainModelo {
         $sql = mainModelo::fnConectar()->query('SELECT codigo, nombre FROM tipo_equipos ORDER BY codigo ASC');
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
+    protected static function fnSelectTipoEquipoxSistema($idSistema){
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_filtrar_TipoEquipo_por_Sistema(:Sistema)');
+        $sql->bindParam(":Sistema", $idSistema);
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
     protected static function fnSelectEquipo(){
         $sql = mainModelo::fnConectar()->query('SELECT codigo, nombre FROM equipos ORDER BY codigo ASC');
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    protected static function fnSelectEquipoxTipoEquipo($idTipoEquipo){
+        $sql = mainModelo::fnConectar()->prepare('CALL sp_filtrar_equipo_por_tipoEquipo(:TipoEquipo)');
+        $sql->bindParam(":TipoEquipo", $idTipoEquipo);
+        $sql->execute();
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
     protected static function fnSelectPersonal(){

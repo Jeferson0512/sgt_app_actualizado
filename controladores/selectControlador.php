@@ -8,49 +8,61 @@ if($peticionAjax){
 class selectControlador extends selectModelo
 {
     public function fnAreaControlador(){
-        $areas = selectModelo::fnSelectArea();
+        $resultado = selectModelo::fnSelectArea();
         // header('Content-Type: application/json');
-        // print_r($areas);
-        echo json_encode($areas);
+        // print_r($resultado);
+        echo json_encode($resultado);
     }
     public function fnCargoControlador(){
-        $areas = selectModelo::fnSelectCargo();
+        $resultado = selectModelo::fnSelectCargo();
         // header('Content-Type: application/json');
-        echo json_encode($areas);
+        echo json_encode($resultado);
     }
     public function fnSentidoControlador(){
-        $tunel = selectModelo::fnSelectSentido();
+        $resultado = selectModelo::fnSelectSentido();
         // header('Content-Type: application/json');
-        echo json_encode($tunel);
+        echo json_encode($resultado);
     }
     public function fnTurnoControlador(){
-        $tunel = selectModelo::fnSelectTurno();
+        $resultado = selectModelo::fnSelectTurno();
         // header('Content-Type: application/json');
-        echo json_encode($tunel);
+        echo json_encode($resultado);
     }
     public function fnSistemaControlador(){
-        $tunel = selectModelo::fnSelectSistema();
+        $resultado = selectModelo::fnSelectSistema();
         // header('Content-Type: application/json');
-        echo json_encode($tunel);
+        echo json_encode($resultado);
     }
     public function fnTipoEquipoControlador(){
-        $tunel = selectModelo::fnSelectTipoEquipo();
+        $resultado = selectModelo::fnSelectTipoEquipo();
         // header('Content-Type: application/json');
-        echo json_encode($tunel);
+        echo json_encode($resultado);
+    }
+    public function fnTipoEquipoxSistemaControlador(){
+        $idSistema = $_GET['idSistema'];
+        $resultado = selectModelo::fnSelectTipoEquipoxSistema($idSistema);
+        // header('Content-Type: application/json');
+        echo json_encode($resultado);
     }
     public function fnEquipoControlador(){
-        $tunel = selectModelo::fnSelectEquipo();
+        $resultado = selectModelo::fnSelectEquipo();
         // header('Content-Type: application/json');
-        echo json_encode($tunel);
+        echo json_encode($resultado);
+    }
+    public function fnEquipoxTipoEquipoControlador(){
+        $idTipoEquipo = $_GET['idTipoEquipo'];
+        $resultado = selectModelo::fnSelectEquipoxTipoEquipo($idTipoEquipo);
+        // header('Content-Type: application/json');
+        echo json_encode($resultado);
     }
     public function fnPersonalControlador(){
-        $tunel = selectModelo::fnSelectPersonal();
+        $resultado = selectModelo::fnSelectPersonal();
         // header('Content-Type: application/json');
-        echo json_encode($tunel);
+        echo json_encode($resultado);
     }
     public function fnEstadoEquipoControlador(){
-        $tunel = selectModelo::fnSelectEstadoEquipo();
+        $resultado = selectModelo::fnSelectEstadoEquipo();
         // header('Content-Type: application/json');
-        echo json_encode($tunel);
+        echo json_encode($resultado);
     }
 }

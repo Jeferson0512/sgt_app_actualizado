@@ -1,5 +1,6 @@
 const formMaestroAjax = document.querySelectorAll(".formMaestro");
 const btnEditarMaestroAjax = document.querySelectorAll(".btnEditarMaestro");
+
 async function fnEnviarFormMaestroAjax(e) {
   e.preventDefault();
 
@@ -47,7 +48,7 @@ async function fnEnviarFormMaestroAjax(e) {
 // La accion hace entender que esta en la Categoria
 // El maestro hace indicar que subcategoria pertenece
 function fnTableListaMaestro(accion, maestro) {
-  fetch("../../ajax/maestroAjax.php", {
+  fetch(urlFromBase('ajax/maestroAjax.php'), {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -92,7 +93,7 @@ async function fnBtnEliminarMaestroAjax() {
         // formData.append('maestro_tipoVehiculo_eliminar_id', id);
         const formData = new URLSearchParams({ id, maestro, accion }); //-> Agregamos los dataset para enviarlo al AJAX
         // console.log("ENTOR A ALERTAS.JS", formData);
-        const res = await fetch("../../ajax/maestroAjax.php", {
+        const res = await fetch(urlFromBase("ajax/maestroAjax.php"), {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",

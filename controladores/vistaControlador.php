@@ -9,6 +9,7 @@ class vistaControlador
         "404",
         "usuario",
         "area",
+        "mantenimiento/calendario",
         "mantenimiento/correctivo",
         "mantenimiento/correctivo/detalle",
         "maestros/usuario",
